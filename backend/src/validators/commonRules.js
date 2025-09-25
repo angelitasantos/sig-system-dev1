@@ -1,10 +1,10 @@
-const { body } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 const commonRules = {
     nome: () =>
         body('nome')
         .notEmpty().withMessage('Nome é obrigatório!')
-        .isLength({ min: 2, max: 100 }).withMessage('Nome deve ter entre 2 e 100 caracteres!')
+        .isLength({ min: 2, max: 50 }).withMessage('Nome deve ter entre 2 e 50 caracteres!')
         .trim(),
 
     email: () =>
@@ -32,7 +32,28 @@ const commonRules = {
 
     estoque: () =>
         body('estoque_atual')
-        .isInt({ min: 0 }).withMessage('Estoque não pode ser negativo!')
+        .isInt({ min: 0 }).withMessage('Estoque não pode ser negativo!'),
+    
+    descricao: () =>
+        body('descricao')
+        .notEmpty().withMessage('Descrição é obrigatória!')
+        .isLength({ min: 2, max: 50 }).withMessage('Descrição deve ter entre 2 e 50 caracteres!')
+        .trim(),
 };
 
-module.exports = commonRules;
+const handleValidationErrors = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            success: false,
+            message: 'Erro(s) de validação!',
+            errors: errors.array(),
+        });
+    }
+    next();
+};
+
+module.exports = {
+    commonRules,
+    handleValidationErrors,
+};

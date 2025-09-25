@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
     res.json({ message: 'Backend ativo e rodando 🚀' });
 });
 
+const grupoRoutes = require('./routes/grupoRoutes');
+
+app.use('/grupos', grupoRoutes);
+
 // Rota de teste DB
 app.use('/db-test', dbTestRoutes);
 
