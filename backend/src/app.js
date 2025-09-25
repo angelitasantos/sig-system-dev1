@@ -3,7 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const dbTestRoutes = require('./routes/dbTestRoutes');
-const loggingMiddleware = require('./utils/loggingMiddleware');
+const loggingMiddleware = require('./middlewares/loggingMiddleware');
 const { notFoundHandler, errorHandler } = require('./utils/errorHandler');
 
 const app = express();
