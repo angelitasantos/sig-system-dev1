@@ -16,3 +16,29 @@ Sistema para gerenciar atividades operacionais e financeiras, construído com a 
 
 - **Banco de Dados:**
   - PostgreSQL
+
+---
+
+### 🚀 Como Criar um novo Projeto
+
+- Instalar dependências
+  ```bash
+    npm init -y
+    npm install express pg dotenv bcrypt jsonwebtoken cors morgan
+    npm install --save-dev nodemon
+  ```
+
+- Configurar variáveis de ambiente (.env)
+
+- Rodar o servidor localmente
+  - npm run dev
+
+#### 🔑 Explicação rápida:
+    - express → framework web para o backend.
+    - pg → conexão com PostgreSQL.
+    - dotenv → variáveis de ambiente.
+    - bcrypt → criptografia de senhas.
+    - jsonwebtoken → tokens JWT (autenticação).
+    - cors → habilitar requisições de origens diferentes.
+    - morgan → log de requisições HTTP.
+    - nodemon (dev) → reiniciar o servidor automaticamente em mudanças.
