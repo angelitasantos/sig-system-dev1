@@ -24,7 +24,7 @@ Sistema para gerenciar atividades operacionais e financeiras, construído com a 
 - Instalar dependências
   ```bash
     npm init -y
-    npm install express pg dotenv bcrypt jsonwebtoken cors morgan multer date-fns
+    npm install express pg dotenv bcrypt jsonwebtoken cors morgan multer date-fns express-validator
     npm install --save-dev nodemon
   ```
 
