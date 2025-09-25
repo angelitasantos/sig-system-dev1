@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 
-const dbTestRoutes = require("./routes/dbTestRoutes");
+const dbTestRoutes = require('./routes/dbTestRoutes');
+const loggingMiddleware = require('./utils/loggingMiddleware');
+const { notFoundHandler, errorHandler } = require('./utils/errorHandler');
 
 const app = express();
 
@@ -10,6 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(loggingMiddleware);
 
 // Rota
 app.get('/', (req, res) => {
@@ -17,6 +20,10 @@ app.get('/', (req, res) => {
 });
 
 // Rota de teste DB
-app.use("/db-test", dbTestRoutes);
+app.use('/db-test', dbTestRoutes);
+
+// Middleware de erros
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 module.exports = app;
