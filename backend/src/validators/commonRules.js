@@ -39,6 +39,12 @@ const commonRules = {
         .notEmpty().withMessage('Descrição é obrigatória!')
         .isLength({ min: 2, max: 50 }).withMessage('Descrição deve ter entre 2 e 50 caracteres!')
         .trim(),
+    
+    linkPaginaRule: () =>
+        body('link_pagina')
+        .notEmpty().withMessage('Link da página é obrigatório!')
+        .isLength({ min: 5, max: 150 }).withMessage('Link deve ter entre 5 e 150 caracteres!')
+        .trim(),
 };
 
 const handleValidationErrors = (req, res, next) => {
