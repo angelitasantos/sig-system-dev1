@@ -24,7 +24,7 @@ Sistema para gerenciar atividades operacionais e financeiras, construído com a 
 - Instalar dependências
   ```bash
     npm init -y
-    npm install express pg dotenv bcrypt jsonwebtoken cors morgan
+    npm install express pg dotenv bcrypt jsonwebtoken cors morgan multer date-fns
     npm install --save-dev nodemon
   ```
 
@@ -41,4 +41,5 @@ Sistema para gerenciar atividades operacionais e financeiras, construído com a 
     - jsonwebtoken → tokens JWT (autenticação).
     - cors → habilitar requisições de origens diferentes.
     - morgan → log de requisições HTTP.
+    - multer → upload seguro de arquivos.
     - nodemon (dev) → reiniciar o servidor automaticamente em mudanças.
