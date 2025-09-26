@@ -34,10 +34,12 @@ app.use('/usuarios', usuarioRoutes);
 const categoriaRoutes = require('./modules/cadastrosBasicos/routes/categoriaRoutes');
 const modalRoutes = require('./modules/cadastrosBasicos/routes/modalRoutes');
 const servicoRoutes = require('./modules/cadastrosBasicos/routes/servicoRoutes');
+const statusProcessoRoutes = require('./modules/cadastrosBasicos/routes/statusProcessoRoutes');
 
 app.use('/categorias', categoriaRoutes);
 app.use('/modais', modalRoutes);
 app.use('/servicos', servicoRoutes);
+app.use('/status-processos', statusProcessoRoutes);
 
 // Rota de teste DB
 app.use('/db-test', dbTestRoutes);
