@@ -19,13 +19,16 @@ app.get('/', (req, res) => {
     res.json({ message: 'Backend ativo e rodando 🚀' });
 });
 
+// Acesso & Segurança
 const grupoRoutes = require('./routes/grupoRoutes');
 const paginaRoutes = require('./routes/paginaRoutes');
 const grupoPaginaRoutes = require('./routes/grupoPaginaRoutes');
+const usuarioRoutes = require('./routes/usuarioRoutes');
 
 app.use('/grupos', grupoRoutes);
 app.use('/paginas', paginaRoutes);
 app.use('/grupos-paginas', grupoPaginaRoutes);
+app.use('/usuarios', usuarioRoutes);
 
 // Rota de teste DB
 app.use('/db-test', dbTestRoutes);
