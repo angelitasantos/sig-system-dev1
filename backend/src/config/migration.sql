@@ -1,3 +1,8 @@
+SELECT table_name 
+FROM information_schema.tables 
+WHERE table_schema = 'public' 
+AND table_type = 'BASE TABLE';
+
 -- ======================================================================
 -- TABELA DE GRUPOS
 -- ======================================================================
@@ -40,4 +45,58 @@ CREATE TABLE IF NOT EXISTS usuarios (
     grupo_id INT REFERENCES grupos(id) ON DELETE SET NULL,
     ativo BOOLEAN DEFAULT TRUE,
     criado_em TIMESTAMP DEFAULT NOW()
+);
+
+-- ======================================================================
+-- TABELA DE CATEGORIAS
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS categorias (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(100) UNIQUE NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+-- ======================================================================
+-- TABELA DE SERVIÇOS
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS servicos (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(100) UNIQUE NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+-- ======================================================================
+-- TABELA DE TIPO DE SERVIÇOS
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS tipos_servico (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(100) UNIQUE NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+-- ======================================================================
+-- TABELA DE TIPO COMEX
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS tipos_comex (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(100) UNIQUE NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+-- ======================================================================
+-- TABELA DE STATUS DO PROCESSO
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS status_processo (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(100) UNIQUE NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+-- ======================================================================
+-- TABELA DE MODAL
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS modais (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(100) UNIQUE NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE
 );

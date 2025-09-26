@@ -30,6 +30,11 @@ app.use('/paginas', paginaRoutes);
 app.use('/grupos-paginas', grupoPaginaRoutes);
 app.use('/usuarios', usuarioRoutes);
 
+// Cadastros Básicos
+const categoriaRoutes = require('./modules/cadastrosBasicos/routes/categoriaRoutes');
+
+app.use('/categorias', categoriaRoutes);
+
 // Rota de teste DB
 app.use('/db-test', dbTestRoutes);
 
