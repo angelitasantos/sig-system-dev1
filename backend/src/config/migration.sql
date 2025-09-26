@@ -100,3 +100,26 @@ CREATE TABLE IF NOT EXISTS modais (
     descricao VARCHAR(100) UNIQUE NOT NULL,
     ativo BOOLEAN DEFAULT TRUE
 );
+
+-- ======================================================================
+-- TABELA DE EMPRESAS
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS empresas (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) UNIQUE NOT NULL,
+    sigla_importacao VARCHAR(10),
+    sigla_exportacao VARCHAR(10),
+    numero_inicial INT NOT NULL DEFAULT 0,
+    cnpj VARCHAR(20) UNIQUE NOT NULL,
+    nome_completo VARCHAR(100),
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+-- ======================================================================
+-- TABELA DE SEQUÊNCIAS DE PROCESSOS
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS sequencias_processos (
+    empresa_id INT REFERENCES empresas(id) ON DELETE CASCADE,
+    ultimo_numero INT NOT NULL,
+    PRIMARY KEY (empresa_id)
+);

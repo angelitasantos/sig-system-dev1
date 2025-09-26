@@ -24,11 +24,13 @@ const grupoRoutes = require('./routes/grupoRoutes');
 const paginaRoutes = require('./routes/paginaRoutes');
 const grupoPaginaRoutes = require('./routes/grupoPaginaRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
+const empresaRoutes = require('./routes/empresaRoutes');
 
 app.use('/grupos', grupoRoutes);
 app.use('/paginas', paginaRoutes);
 app.use('/grupos-paginas', grupoPaginaRoutes);
 app.use('/usuarios', usuarioRoutes);
+app.use('/empresas', empresaRoutes);
 
 // Cadastros Básicos
 const categoriaRoutes = require('./modules/cadastrosBasicos/routes/categoriaRoutes');
