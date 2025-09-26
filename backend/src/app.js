@@ -21,9 +21,11 @@ app.get('/', (req, res) => {
 
 const grupoRoutes = require('./routes/grupoRoutes');
 const paginaRoutes = require('./routes/paginaRoutes');
+const grupoPaginaRoutes = require('./routes/grupoPaginaRoutes');
 
 app.use('/grupos', grupoRoutes);
 app.use('/paginas', paginaRoutes);
+app.use('/grupos-paginas', grupoPaginaRoutes);
 
 // Rota de teste DB
 app.use('/db-test', dbTestRoutes);

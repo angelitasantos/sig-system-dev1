@@ -47,6 +47,13 @@ const commonRules = {
         .trim(),
 };
 
+const grupoPaginaRules = [
+    body('grupo_id')
+        .isInt({ min: 1 }).withMessage('grupo_id deve ser um número inteiro positivo!'),
+    body('pagina_id')
+        .isInt({ min: 1 }).withMessage('pagina_id deve ser um número inteiro positivo!'),
+];
+
 const handleValidationErrors = (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -61,5 +68,6 @@ const handleValidationErrors = (req, res, next) => {
 
 module.exports = {
     commonRules,
+    grupoPaginaRules,
     handleValidationErrors,
 };
