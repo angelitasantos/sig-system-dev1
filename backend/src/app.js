@@ -33,9 +33,11 @@ app.use('/usuarios', usuarioRoutes);
 // Cadastros Básicos
 const categoriaRoutes = require('./modules/cadastrosBasicos/routes/categoriaRoutes');
 const modalRoutes = require('./modules/cadastrosBasicos/routes/modalRoutes');
+const servicoRoutes = require('./modules/cadastrosBasicos/routes/servicoRoutes');
 
 app.use('/categorias', categoriaRoutes);
 app.use('/modais', modalRoutes);
+app.use('/servicos', servicoRoutes);
 
 // Rota de teste DB
 app.use('/db-test', dbTestRoutes);
