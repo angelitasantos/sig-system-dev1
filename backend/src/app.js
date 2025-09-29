@@ -51,6 +51,11 @@ app.use('/tipos-comex', tipoComexRoutes);
 app.use('/parceiros', parceiroRoutes);
 app.use('/parceiros-empresas', parceiroEmpresaRoutes);
 
+// Operacional
+const processoRoutes = require('./modules/operacional/routes/processoRoutes');
+
+app.use('/processos', processoRoutes);
+
 // Rota de teste DB
 app.use('/db-test', dbTestRoutes);
 

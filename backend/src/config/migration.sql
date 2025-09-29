@@ -147,3 +147,36 @@ CREATE TABLE IF NOT EXISTS parceiros_empresas (
     sigla_export VARCHAR(10) NOT NULL,
     PRIMARY KEY (parceiro_id, empresa_id)
 );
+
+
+-- ======================================================================
+-- TABELA DE PROCESSOS
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS processos (
+    id SERIAL PRIMARY KEY,
+    numero_processo VARCHAR(50) UNIQUE NOT NULL,
+    tipo_operacao VARCHAR(20) NOT NULL CHECK (tipo_operacao IN ('IMPORTACAO', 'EXPORTACAO', 'OUTRO')),
+    empresa_id INT REFERENCES empresas(id) ON DELETE CASCADE,
+    parceiro_id INT REFERENCES parceiros(id) ON DELETE CASCADE,
+    usuario_id INT REFERENCES usuarios(id) ON DELETE SET NULL,
+    tipo_servico_id INT REFERENCES tipos_servico(id) ON DELETE SET NULL,
+    servico_id INT REFERENCES servicos(id) ON DELETE SET NULL,
+    tipo_comex_id INT REFERENCES tipos_comex(id) ON DELETE SET NULL,
+    status_processo_id INT REFERENCES status_processo(id) ON DELETE SET NULL,
+    modais_id INT REFERENCES modais(id) ON DELETE SET NULL,
+    ref_parceiro TEXT,
+    ano INT DEFAULT EXTRACT(YEAR FROM CURRENT_DATE),
+    mes INT DEFAULT EXTRACT(MONTH FROM CURRENT_DATE),
+    data_criacao TIMESTAMP DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'America/Sao_Paulo'),
+    data_atualizacao TIMESTAMP,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+-- ======================================================================
+-- TABELA DE PREFIXOS REF.PARCEIRO A VERIFICAR
+-- ======================================================================
+CREATE TABLE prefixos_ref_parceiro (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(100) UNIQUE NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE
+);
