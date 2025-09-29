@@ -123,3 +123,27 @@ CREATE TABLE IF NOT EXISTS sequencias_processos (
     ultimo_numero INT NOT NULL,
     PRIMARY KEY (empresa_id)
 );
+
+-- ======================================================================
+-- TABELA DE PARCEIROS
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS parceiros (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) UNIQUE NOT NULL,
+    cnpj_cpf VARCHAR(20) UNIQUE NOT NULL,
+    insc_est VARCHAR(20),
+    nome_completo VARCHAR(200) NOT NULL,
+    categoria_id INT REFERENCES categorias(id) ON DELETE SET NULL,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+-- ======================================================================
+-- TABELA VINCULAR PARCEIROS x EMPRESAS (N:N)
+-- ======================================================================
+CREATE TABLE IF NOT EXISTS parceiros_empresas (
+    parceiro_id INT REFERENCES parceiros(id) ON DELETE CASCADE,
+    empresa_id INT REFERENCES empresas(id) ON DELETE CASCADE,
+    sigla_import VARCHAR(10) NOT NULL,
+    sigla_export VARCHAR(10) NOT NULL,
+    PRIMARY KEY (parceiro_id, empresa_id)
+);
