@@ -12,6 +12,10 @@ const commonRules = {
         .isEmail().withMessage('Email inválido!')
         .normalizeEmail(),
 
+    senha: () => 
+        body('senha')
+        .isLength({ min: 6 }).withMessage('Senha deve ter pelo menos 6 caracteres!'),
+
     telefone: () =>
         body('telefone')
         .isLength({ min: 10, max: 11 }).withMessage('Telefone deve ter entre 10 e 11 caracteres!')

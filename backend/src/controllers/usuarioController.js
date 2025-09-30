@@ -135,6 +135,58 @@ const usuarioController = {
         } catch (err) {
             return apiResponse.error(res, err.message, 500);
         }
+    },
+
+    async getPermissoes(req, res) {
+        try {
+            const { id } = req.params;
+
+            const usuario = await UsuarioModel.findById(id);
+            if (!usuario) {
+                return apiResponse.error(res, 'Usuário não encontrado!', 404);
+            }
+
+            const grupo = await UsuarioModel.findGrupoByUsuarioId(id);
+            const paginas = await UsuarioModel.findPermissoesByUsuarioId(id);
+
+            return apiResponse.success(res, {
+                usuario: {
+                    id: usuario.id,
+                    nome: usuario.nome,
+                    email: usuario.email,
+                    grupo: grupo ? grupo.descricao : null
+                },
+                paginas
+            }, 'Permissões carregadas com sucesso!');
+        } catch (err) {
+            return apiResponse.error(res, err.message, 500);
+        }
+    },
+
+    async getMinhasPermissoes(req, res) {
+        try {
+            const { userId } = req;
+
+            const usuario = await UsuarioModel.findById(userId);
+            if (!usuario) {
+                return apiResponse.error(res, 'Usuário não encontrado!', 404);
+            }
+
+            const grupo = await UsuarioModel.findGrupoByUsuarioId(userId);
+            const paginas = await UsuarioModel.findPermissoesByUsuarioId(userId);
+
+            return apiResponse.success(res, {
+                usuario: {
+                    id: usuario.id,
+                    nome: usuario.nome,
+                    email: usuario.email,
+                    grupo: grupo ? grupo.descricao : null
+                },
+                paginas
+            }, 'Permissões do usuário logado carregadas com sucesso!');
+        } catch (err) {
+            return apiResponse.error(res, err.message, 500);
+        }
     }
 };
 

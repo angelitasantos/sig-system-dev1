@@ -71,6 +71,35 @@ const UsuarioModel = {
             [id]
         );
         return rows[0];
+    },
+
+    async findPermissoesByUsuarioId(usuarioId) {
+        const { rows } = await db.query(
+            `SELECT p.id, p.descricao, p.link_pagina
+            FROM usuarios u
+            INNER JOIN grupos g ON g.id = u.grupo_id
+            INNER JOIN grupos_paginas gp ON gp.grupo_id = g.id
+            INNER JOIN paginas p ON p.id = gp.pagina_id
+            WHERE u.id = $1
+            AND u.ativo = TRUE
+            AND g.ativo = TRUE
+            AND gp.acesso = TRUE
+            AND p.ativo = TRUE
+            ORDER BY p.descricao ASC`,
+            [usuarioId]
+        );
+        return rows;
+    },
+
+    async findGrupoByUsuarioId(usuarioId) {
+        const { rows } = await db.query(
+            `SELECT g.id, g.descricao
+            FROM usuarios u
+            LEFT JOIN grupos g ON g.id = u.grupo_id
+            WHERE u.id = $1`,
+            [usuarioId]
+        );
+        return rows[0];
     }
 };
 
