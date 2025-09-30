@@ -11,7 +11,10 @@ function authMiddleware(req, res, next) {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
+        req.user = {
+            id: decoded.userId,
+            grupoId: decoded.grupoId,
+        };
         next();
     } catch (err) {
         return apiResponse.error(res, 'Token inválido ou expirado!', 403, [err.message]);

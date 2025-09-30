@@ -64,7 +64,7 @@ const usuarioController = {
 
     async editarPerfil(req, res) {
         try {
-            const { userId } = req; // do token
+            const userId = req.user.id; // do token
             const { nome, email } = req.body;
             const atualizado = await UsuarioModel.update(userId, { nome, email, grupo_id: null, ativo: true });
 
@@ -77,7 +77,7 @@ const usuarioController = {
 
     async trocarSenha(req, res) {
         try {
-            const { userId } = req;
+            const userId = req.user.id;;
             const { senhaAtual, novaSenha } = req.body;
 
             const usuario = await UsuarioModel.findById(userId);
@@ -165,7 +165,7 @@ const usuarioController = {
 
     async getMinhasPermissoes(req, res) {
         try {
-            const { userId } = req;
+            const userId = req.user.id;;
 
             const usuario = await UsuarioModel.findById(userId);
             if (!usuario) {

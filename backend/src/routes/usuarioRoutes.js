@@ -14,6 +14,12 @@ router.post(
     usuarioController.registrar
 );
 
+// Perfil próprio
+router.get('/me/permissoes', authMiddleware, usuarioController.getMinhasPermissoes);
+router.put('/me', authMiddleware, [commonRules.nome(), commonRules.email()], handleValidationErrors, usuarioController.editarPerfil);
+router.put('/me/trocar-senha', usuarioController.trocarSenha);
+router.post('/me/logout', authMiddleware, usuarioController.logout);
+
 // Protegidos
 router.get('/', authMiddleware, usuarioController.listar);
 router.get('/:id', authMiddleware, usuarioController.buscarPorId);
@@ -22,11 +28,5 @@ router.get('/:id/permissoes', authMiddleware, usuarioController.getPermissoes);
 router.put('/:id', authMiddleware, [commonRules.nome(), commonRules.email()], handleValidationErrors, usuarioController.atualizar);
 
 router.patch('/:id/soft-delete', authMiddleware, usuarioController.excluir);
-
-// Perfil próprio
-router.get('/me/permissoes', authMiddleware, usuarioController.getMinhasPermissoes);
-router.put('/me', authMiddleware, [commonRules.nome(), commonRules.email()], handleValidationErrors, usuarioController.editarPerfil);
-router.put('/me/trocar-senha', usuarioController.trocarSenha);
-router.post('/me/logout', authMiddleware, usuarioController.logout);
 
 module.exports = router;
